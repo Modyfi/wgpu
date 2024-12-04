@@ -521,6 +521,7 @@ impl super::Queue {
                             // log::warn!(
                             //     "calling tex_image_2d_with_image_bitmap_and_width_and_height"
                             // );
+                            log::warn!("Pushing texture with tex_image_2d_with_image_bitmap_and_width_and_height");
                             gl.tex_image_2d_with_image_bitmap_and_width_and_height(
                                 dst_target,
                                 copy.dst_base.mip_level as i32,
