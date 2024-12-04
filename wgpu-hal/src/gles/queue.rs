@@ -566,14 +566,14 @@ impl super::Queue {
                         },
                         #[cfg(web_sys_unstable_apis)]
                         wgt::ExternalImageSource::VideoFrame(ref v) => unsafe {
-                            gl.tex_image_2d_with_video_frame_and_width_and_height(
+                            gl.tex_image_2d_with_video_frame(
                                 dst_target,
                                 copy.dst_base.mip_level as i32,
                                 format_desc.internal as i32,
                                 // copy.dst_base.origin.x as i32,
                                 // copy.dst_base.origin.y as i32,
-                                copy.size.width as i32,
-                                copy.size.height as i32,
+                                // copy.size.width as i32,
+                                // copy.size.height as i32,
                                 format_desc.external,
                                 format_desc.data_type,
                                 v,
