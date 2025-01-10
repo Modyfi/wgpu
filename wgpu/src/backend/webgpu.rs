@@ -2771,10 +2771,20 @@ impl crate::context::Context for ContextWebGpu {
 
     fn queue_on_submitted_work_done(
         &self,
-        _queue_data: &Self::QueueData,
-        _callback: crate::context::SubmittedWorkDoneCallback,
+        queue_data: &Self::QueueData,
+        callback: crate::context::SubmittedWorkDoneCallback,
     ) {
-        unimplemented!()
+        let work_done_promise = queue_data.0.on_submitted_work_done();
+
+        register_then_closures(
+            &work_done_promise,
+            move |_| {
+                callback();
+            },
+            // These values are not used by the closure above
+            Ok(()),
+            Err(()),
+        );
     }
 
     fn device_start_capture(&self, _device_data: &Self::DeviceData) {}
